@@ -1,0 +1,11 @@
+{
+    "name": "Sandra",
+    "age": 23,
+    "occupation": "Software Engineer",
+    "skills": [
+        "JavaScript",
+        "Node.js",
+        "Angular",
+        "MongoDB"
+    ]
+}

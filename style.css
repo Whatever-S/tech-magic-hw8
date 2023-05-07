@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #f6ecec;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    color: #7874d0
+}
+
+span{
+    color: #9a3aef
+}
+
+.content{
+    margin: 100px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.title{
+    margin-bottom: 40px;
+}
+
+.greeting{
+    margin-bottom: 40px;
+}
+
+.info{
+    margin-bottom: 25px;
+}
