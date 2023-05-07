@@ -4,8 +4,9 @@
     "occupation": "Software Engineer",
     "skills": [
         "JavaScript",
-        "Node.js",
+        "TypeScript",
         "Angular",
+        "Node.js",
         "MongoDB"
     ]
 }

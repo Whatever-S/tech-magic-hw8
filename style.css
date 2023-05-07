@@ -11,7 +11,8 @@ body{
 }
 
 span{
-    color: #9a3aef
+    color: #9a3aef;
+    font-weight: bold;
 }
 
 .content{
@@ -33,3 +34,13 @@ span{
 .info{
     margin-bottom: 25px;
 }
+
+.list-title{
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+ul {
+    list-style: none;
+}
+
