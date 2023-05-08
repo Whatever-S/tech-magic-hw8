@@ -25,49 +25,48 @@ const readDataFile = (template, dataPath) => {
         if (err) {
             console.error(`Error reading data file: ${err.message}`);
             askForDataPath(template);
-        return;
+            return;
         }
 
-    let jsonData;
-    try {
-        jsonData = JSON.parse(data);
-    } catch (err) {
-        console.error(`Error parsing JSON data: ${err.message}`);
-        askForDataPath(template);
-        return;
-    }
+        let jsonData;
+        try {
+            jsonData = JSON.parse(data);
+        } catch (err) {
+            console.error(`Error parsing JSON data: ${err.message}`);
+            askForDataPath(template);
+            return;
+        }
 
-    const skillListHTML = jsonData.skills.map(
-        (skill) => `<li>${skill} </li>`
-    ).join(" ");
+        const skillListHTML = jsonData.skills.map(
+            (skill) => `<li>${skill}</li>`
+        ).join(" ");
 
-    const rendered = template
-        .replace(/{{(\w+)}}/g, (match, p1) => {
-            return jsonData[p1] || "";
-        })
-        .replace("{{skills}}", skillListHTML);
+        const rendered = template
+            .replace(/{{(\w+)}}/g, (match, p1) => {
+                return jsonData[p1] || "";
+            })
+            .replace("{{skills}}", skillListHTML);
 
-    http.createServer((req, res) => {
-        if (req.url === "/style.css") {
-            fs.readFile("./style.css", "utf8", (err, css) => {
-                if (err) {
-                    console.error(`Error reading CSS file: ${err.message}`);
-                    res.writeHead(404, { "Content-Type": "text/plain" });
-                    res.write("404 Not Found");
+        http.createServer((req, res) => {
+            if (req.url === "/style.css") {
+                fs.readFile("./style.css", "utf8", (err, css) => {
+                    if (err) {
+                        console.error(`Error reading CSS file: ${err.message}`);
+                        res.writeHead(404, { "Content-Type": "text/plain" });
+                        res.write("404 Not Found");
+                        res.end();
+                        return;
+                    }
+                    res.writeHead(200, { "Content-Type": "text/css" });
+                    res.write(css);
                     res.end();
-                    return;
-                }
-                res.writeHead(200, { "Content-Type": "text/css" });
-                res.write(css);
+                    });
+            } else {
+                res.writeHead(200, { "Content-Type": "text/html" });
+                res.write(rendered);
                 res.end();
-                });
-        } else {
-            res.writeHead(200, { "Content-Type": "text/html" });
-            res.write(rendered);
-            res.end();
-            }
-        })
-        .listen(3000, () => {
+                }
+        }).listen(3000, () => {
             console.log("Check the result on http://localhost:3000");
             rl.close();
         });
@@ -76,19 +75,19 @@ const readDataFile = (template, dataPath) => {
 
 
 const askForTemplatePath = (dataPath) => {
-    rl.question('Enter the correct path to the template file (reccomend "index.html"): ', templatePath => {
+    rl.question('Enter the correct path to the template file (recommend "index.html"): ', templatePath => {
         readTemplateFile(templatePath, dataPath);
     });
 };
 
 const askForDataPath = (template) => {
-    rl.question('Enter the correct path to the data file (reccomend "data.json"): ', dataPath => {
+    rl.question('Enter the correct path to the data file (recommend "data.json"): ', dataPath => {
         readDataFile(template, dataPath);
     });
 };
 
-rl.question('Enter the path to the template file (reccomend "index.html"): ', templatePath => {
-    rl.question('Enter the path to the data file (reccomend "data.json"): ', dataPath => {
+rl.question('Enter the path to the template file (recommend "index.html"): ', templatePath => {
+    rl.question('Enter the path to the data file (recommend "data.json"): ', dataPath => {
         readTemplateFile(templatePath, dataPath);
     });
 });
