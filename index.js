@@ -39,14 +39,14 @@ const readDataFile = (template, dataPath) => {
 
         const skillListHTML = jsonData.skills.map(
             (skill) => `<li>${skill}</li>`
-        ).join(" ");
+        ).join("");
 
         const rendered = template
+            .replace("{{skills}}", skillListHTML)
             .replace(/{{(\w+)}}/g, (match, p1) => {
                 return jsonData[p1] || "";
             })
-            .replace("{{skills}}", skillListHTML);
-
+            
         http.createServer((req, res) => {
             if (req.url === "/style.css") {
                 fs.readFile("./style.css", "utf8", (err, css) => {
