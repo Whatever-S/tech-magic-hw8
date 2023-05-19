@@ -15,29 +15,23 @@ span{
     font-weight: bold;
 }
 
-.content{
-    margin: 100px auto;
+.container{
+    margin-top: 60px; 
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
+.content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    line-height: 32px;
+}
 
 .title{
     margin-bottom: 40px;
-}
-
-.greeting{
-    margin-bottom: 40px;
-}
-
-.info{
-    margin-bottom: 25px;
-}
-
-.list-title{
-    font-weight: bold;
-    margin-bottom: 15px;
 }
 
 ul {
